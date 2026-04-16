@@ -1,8 +1,8 @@
-const { buildReport } = require("./gradeCalculator");
-const { parseGrades } = require("./parseGrades");
+const { buildReport } = require('./gradeCalculator');
+const { parseGrades } = require('./parseGrades');
 
 function printHelp() {
-  console.log("Использование: npm start -- 78 90 67 100");
+  console.log('Использование: npm start -- 78 90 67 100');
 }
 
 function run() {

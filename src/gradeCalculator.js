@@ -1,11 +1,11 @@
 function validateGrades(grades) {
   if (!Array.isArray(grades) || grades.length === 0) {
-    throw new Error("Нужен непустой список оценок");
+    throw new Error('Нужен непустой список оценок');
   }
 
   for (const grade of grades) {
     if (!Number.isFinite(grade) || grade < 0 || grade > 100) {
-      throw new Error("Оценки должны быть числами от 0 до 100");
+      throw new Error('Оценки должны быть числами от 0 до 100');
     }
   }
 }
@@ -17,11 +17,11 @@ function calculateAverage(grades) {
 }
 
 function getLetterGrade(average) {
-  if (average >= 90) return "A";
-  if (average >= 80) return "B";
-  if (average >= 70) return "C";
-  if (average >= 60) return "D";
-  return "F";
+  if (average >= 90) return 'A';
+  if (average >= 80) return 'B';
+  if (average >= 70) return 'C';
+  if (average >= 60) return 'D';
+  return 'F';
 }
 
 function calculateMedian(grades) {
@@ -46,7 +46,8 @@ function buildReport(grades) {
     min,
     max,
     median: Number(median.toFixed(2)),
-    recommendation: grades.length < 3 ? "Добавьте минимум 3 оценки для более точного результата" : null
+    recommendation:
+      grades.length < 3 ? 'Добавьте минимум 3 оценки для более точного результата' : null
   };
 }
 
