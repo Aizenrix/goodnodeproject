@@ -1,7 +1,11 @@
 const { buildReport } = require("./gradeCalculator");
 
 function parseGrades(args) {
-  const grades = args.map((value) => Number(value));
+  const prepared = args
+    .flatMap((value) => value.split(","))
+    .map((value) => value.trim())
+    .filter(Boolean);
+  const grades = prepared.map((value) => Number(value));
   if (grades.some((value) => Number.isNaN(value))) {
     throw new Error("Передавайте только числа");
   }
