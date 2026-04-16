@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grade Calculator</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="panel">
+        <h1>Grade Calculator</h1>
+        <p class="subtitle">Строгий расчёт среднего балла и итоговой оценки</p>
+        <form id="grade-form">
+          <label for="grades">Оценки (0-100)</label>
+          <input
+            id="grades"
+            name="grades"
+            type="text"
+            placeholder="Например: 78, 90, 67, 100"
+            autocomplete="off"
+          />
+          <button type="submit">Рассчитать</button>
+        </form>
+        <div id="result" class="result hidden"></div>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

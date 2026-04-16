@@ -1,11 +1,12 @@
 {
   "name": "goodnodeproject",
   "version": "1.0.0",
-  "description": "CLI калькулятор оценок",
-  "main": "src/index.js",
+  "description": "Калькулятор оценок: CLI + веб-интерфейс",
+  "main": "src/server.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node src/server.js",
+    "start:cli": "node src/index.js",
     "test": "node --test"
   },
   "keywords": [
