@@ -1,6 +1,6 @@
 function parseGrades(values) {
   const prepared = values
-    .flatMap((value) => String(value).split(","))
+    .flatMap((value) => String(value).split(/[\s,;]+/u))
     .map((value) => value.trim())
     .filter(Boolean);
 

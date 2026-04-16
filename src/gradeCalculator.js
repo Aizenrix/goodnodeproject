@@ -24,13 +24,29 @@ function getLetterGrade(average) {
   return "F";
 }
 
+function calculateMedian(grades) {
+  const sorted = [...grades].sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+  if (sorted.length % 2 === 0) {
+    return (sorted[middle - 1] + sorted[middle]) / 2;
+  }
+  return sorted[middle];
+}
+
 function buildReport(grades) {
   const average = calculateAverage(grades);
+  const min = Math.min(...grades);
+  const max = Math.max(...grades);
+  const median = calculateMedian(grades);
   return {
     grades,
     average: Number(average.toFixed(2)),
     letter: getLetterGrade(average),
-    count: grades.length
+    count: grades.length,
+    min,
+    max,
+    median: Number(median.toFixed(2)),
+    recommendation: grades.length < 3 ? "Добавьте минимум 3 оценки для более точного результата" : null
   };
 }
 

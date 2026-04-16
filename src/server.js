@@ -5,7 +5,7 @@ const { buildReport } = require("./gradeCalculator");
 const { parseGrades } = require("./parseGrades");
 
 const host = "127.0.0.1";
-const port = Number(process.env.PORT) || 3000;
+const basePort = Number(process.env.PORT) || 3000;
 const publicDir = path.resolve(__dirname, "..", "public");
 
 const mimeTypes = {
@@ -53,7 +53,7 @@ function handleApi(req, res) {
   });
 }
 
-const server = http.createServer((req, res) => {
+function requestHandler(req, res) {
   if (!req.url) {
     sendJson(res, 400, { error: "Bad request" });
     return;
@@ -76,8 +76,22 @@ const server = http.createServer((req, res) => {
     return;
   }
   serveFile(res, filePath);
-});
+}
 
-server.listen(port, host, () => {
-  console.log(`Server: http://${host}:${port}`);
-});
+function startServer(port) {
+  const server = http.createServer(requestHandler);
+  server.on("error", (error) => {
+    if (error.code === "EADDRINUSE" && !process.env.PORT) {
+      const nextPort = port + 1;
+      console.log(`Port busy, retry: ${nextPort}`);
+      startServer(nextPort);
+      return;
+    }
+    throw error;
+  });
+  server.listen(port, host, () => {
+    console.log(`Server: http://${host}:${port}`);
+  });
+}
+
+startServer(basePort);
